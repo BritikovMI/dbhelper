@@ -1,5 +1,7 @@
 package ru.rbt.dbhelper.utils;
 
+import static ru.rbt.dbhelper.utils.AlternateSelector.selector;
+
 /**
  * Created by BritikovMI on 25.07.2017.
  */
@@ -16,7 +18,7 @@ public class Main {
                 "\tUPDATE_TABLE\n" +
                 "\n\nPlease enter some command below:\n");
 
-        finalComand = Selector.selector(args);
+        finalComand = selector(args);
 
         if (finalComand != null) {
             System.out.println("\n\n\n\n" + finalComand);
