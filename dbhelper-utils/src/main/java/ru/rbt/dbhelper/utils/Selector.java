@@ -4,6 +4,7 @@ package ru.rbt.dbhelper.utils;
  * Created by er23887 on 25.07.2017.
  */
 public class Selector {
+
     static final String SHOW_TABLE = "SELECT * FROM BRM_ORDER;";
     static final String SHOW_COLUMN = "SELECT CUSTOMER_ID FROM BRM_ORDER;";
     static final String SHOW_CELLS = "SELECT DATE_OF FROM BRM_ORDER WHERE ID_PK != '2';";
