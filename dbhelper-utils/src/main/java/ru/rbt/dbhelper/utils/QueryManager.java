@@ -18,6 +18,7 @@ public class QueryManager {
             stmt = con.prepareStatement(query);
             rs = stmt.getResultSet();
             ResultSetMetaData metaData = rs.getMetaData();
+            System.out.println("Ya tut");
             int columnCount = metaData.getColumnCount();
             while (rs.next()) {
                 for (int i = 0; i < columnCount; i++) {
