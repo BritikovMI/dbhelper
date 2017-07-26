@@ -2,11 +2,9 @@
 
 echo $@
 
-HOME_DIR=/c/Users/BritikovMI/dbhelper
-HOME_DIR1=/c/Users/BritikovMI/.m2/repository
+HOME_DIR=$(pwd)
 
 CLPATH=${HOME_DIR}/dbhelper-utils/target/dbhelper-utils-1.0-SNAPSHOT.jar
-CLPATH=${CLPATH}:${HOME_DIR1}/com/github/noraui/ojdbc7/12.1.0.2/ojdbc7-12.1.0.2.jar
 
 echo ${CLPATH}
 

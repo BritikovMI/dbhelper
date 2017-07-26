@@ -5,7 +5,11 @@ package ru.rbt.dbhelper.utils;
  */
 public class AlternateSelector {
 
-    public static String selector(String[] args) {
+    public static String selector(String args[]) {
+        if (args.length < 1) {
+            System.out.println("Please enter valid command!");
+            return null;
+        }
         String command = args[0];
         try {
             return Cmd.valueOf(command).toString();
