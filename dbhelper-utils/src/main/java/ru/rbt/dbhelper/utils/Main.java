@@ -1,78 +1,78 @@
 package ru.rbt.dbhelper.utils;
 
-import oracle.jdbc.OracleDriver;
-
 import java.sql.*;
 
 import static ru.rbt.dbhelper.utils.AlternateSelector.selector;
+import static ru.rbt.dbhelper.utils.JdbcConnection.dbConnection;
+import static ru.rbt.dbhelper.utils.JdbcConnection.driverSet;
 
 /**
  * Created by BritikovMI on 25.07.2017.
  */
 public class Main {
-    final private static String driverName = "oracle.jdbc.driver.OracleDriver";
-    private static String url;
-    final private static String server = "dev.rbtechnologies.ru";
-    final private static String port = "1521";
-    final private static String sid = "ELAR";
-    final private static String username = "IRBIS";
-    final private static String password = "irbis";
+
     public static void main(String[] args) {
-        url = String.format("jdbc:oracle:thin:@%s:%s:%s", server, port, sid);
+        Connection connection = null;
+        Statement statement = null;
+        String host = "dev.rbtechnologies.ru";
+        int port = 1521;
+        String sid = "ELAR";
+        String user = "IRBIS";
+        String pwd = "irbis";
+        String url = String.format("jdbc:oracle:thin:@%s:%d:%s", host, port, sid);
+        String finalComand;
 
-//        String host = "dev.rbtechnologies.ru";
-//        int port = 1521;
-//        String sid = "ELAR";
-//        String user = "IRBIS";
-//        String pwd = "irbis";
-//        String url = String.format("jdbc:oracle:thin:@%s:%d:%s", host, port, sid);
-//
-//        try {
-//            Class.forName("oracle.jdbc.driver.OracleDriver");
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//
-//        Connection connection = null;
-//        try {
-//            connection = DriverManager.getConnection(url, user, pwd);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            connection.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-
-        Connection connection;
+        driverSet();
         try {
-            Driver driver = new OracleDriver();
-            DriverManager.registerDriver(driver);
-            connection = DriverManager.getConnection(url, username, password);
+            connection = dbConnection(url, user, pwd);
+            statement = connection.createStatement();
         } catch (SQLException e) {
-            System.err.println("Системе не удалось подключить драйвер");
-            e.printStackTrace();
+            System.out.println("\n\n\n\n\n\n\n\t\t\t\t" + e.getErrorCode() + "\n\n\n\n\n\n\n");
         }
 
 
-        String finalComand;
-//        System.out.println("Commands: \n" +
-//                "\tSHOW_TABLE\n" +
-//                "\tSHOW_COLUMN\n" +
-//                "\tSHOW_CELLS\n" +
-//                "\tSHOW_REV_TABLE\n" +
-//                "\tSHOW_LINE_LIKE_THIS\n" +
-//                "\tUPDATE_TABLE\n");
+        System.out.println("Commands: \n" +
+                "\tSHOW_TABLE\n" +
+                "\tSHOW_COLUMN\n" +
+                "\tSHOW_CELLS\n" +
+                "\tSHOW_REV_TABLE\n" +
+                "\tSHOW_LINE_LIKE_THIS\n" +
+                "\tUPDATE_TABLE\n");
 
         finalComand = selector(args);
 
         if (finalComand != null) {
-            System.out.println("\n\n\n\n" + finalComand);
+            System.out.println("\n\n\n\n Your command is: " + finalComand + ". The command is valid.");
         } else {
             System.out.println("Please enter valid command!");
         }
+
+
+        try {
+
+            ResultSet rs = statement.executeQuery(finalComand);
+
+            while (rs.next()) {
+//                String idPK = rs.getString("DATE_OF");
+//                String dateOf = rs.getString("DATE_OF");
+                String customeId = rs.getString("CUSTOMER_ID");
+                System.out.println("customerId : " + customeId);
+            }
+            if (rs == null) {
+                System.out.println("\n\nOhh, your statement is null!");
+            } else {
+                System.out.println("\n\nStatement is not null.");
+            }
+        } catch (SQLException e) {
+            System.out.println("\n\n\n\n\n\n\n\t\t\t\t" + e.getErrorCode() + "\n\n\n\n\n\n\n");
+        }
+
+
+        try {
+            connection.close();
+            System.out.println("\n\nConnection was successfully closed!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-
-
 }
