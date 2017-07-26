@@ -47,16 +47,34 @@ public class Main {
             System.out.println("Please enter valid command!");
         }
 
-
+        String table;
         try {
 
             ResultSet rs = statement.executeQuery(finalComand);
 
-            while (rs.next()) {
-//                String idPK = rs.getString("DATE_OF");
-//                String dateOf = rs.getString("DATE_OF");
-                String customeId = rs.getString("CUSTOMER_ID");
-                System.out.println("customerId : " + customeId);
+            //SHOW_TABLE
+            if (finalComand == "SELECT * FROM BRM_ORDER") {
+                table = String.format("\n\n\n\n%s\t%s\t\t%s", "ID_PK", "DATE_OF", "CUSTOMER_ID");
+                System.out.println(table + "\n");
+                while (rs.next()) {
+
+                    String idPk = rs.getString("ID_PK");
+                    String dateOf = rs.getString("DATE_OF");
+                    String customeId = rs.getString("CUSTOMER_ID");
+                    String output = String.format("%s\t%s\t\t%s", idPk, dateOf, customeId);
+                    System.out.println(output + "\n");
+                }
+            }
+
+            //SHOW_COLUMN
+            if (finalComand == "SELECT CUSTOMER_ID FROM BRM_ORDER") {
+                table = String.format("%s", "CUSTOMER_ID");
+                System.out.println(table + "\n");
+                while (rs.next()) {
+                    String customeId = rs.getString("CUSTOMER_ID");
+                    String output = String.format("%s", customeId);
+                    System.out.println(output + "\n");
+                }
             }
             if (rs == null) {
                 System.out.println("\n\nOhh, your statement is null!");
