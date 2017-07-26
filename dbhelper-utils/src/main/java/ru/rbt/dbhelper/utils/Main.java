@@ -66,7 +66,7 @@ public class Main {
                 }
             }
 
-            //SHOW_COLUMN
+            //SHOW_COLUMN.
             if (finalComand == "SELECT CUSTOMER_ID FROM BRM_ORDER") {
                 table = String.format("%s", "CUSTOMER_ID");
                 System.out.println(table + "\n");
