@@ -4,6 +4,7 @@ package ru.rbt.dbhelper.utils;
  * Created by er23887 on 25.07.2017.
  */
 public enum Cmd {
+    //CMD values
     SHOW_BRM_ORDER("SELECT * FROM BRM_ORDER"),
     SHOW_BRM_CUSTOMER("SELECT * FROM BRM_CUSTOMER"),
     SHOW_COLUMN("SELECT CUSTOMER_ID FROM BRM_ORDER"),
