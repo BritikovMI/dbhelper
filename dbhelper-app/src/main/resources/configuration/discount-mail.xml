@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+    <mbean code="org.jboss.mail.MailService" name="jboss:service=Mail">
+        <attribute name="JNDIName">java:jboss/mail/Default</attribute>
+        <attribute name="User">britikovmi@rbtechnologies.ru</attribute>
+        <attribute name="Password"></attribute>
+        <attribute name="Configuration">
+            <configuration>
+                <property name="mail.store.protocol" value="pop3"/>
+                <property name="mail.transport.protocol" value="smtp"/>
+                <property name="mail.user" value="britikovmi@rbtechnologies.ru<"/>
+                <property name="mail.pop3.host" value="mail.rbtechnologies.ru"/>
+                <property name="mail.smtp.host" value="mail.rbtechnologies.ru"/>
+                <property name="mail.from" value="britikovmi@rbtechnologies.ru"/>
+                <property name="mail.debug" value="true"/>
+            </configuration>
+        </attribute>
+    </mbean>
+
+</server>

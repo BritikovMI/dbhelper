@@ -7,11 +7,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>dbhelper-utils</module>
-        <module>dbhelper-servlet</module>
-        <module>dbhelper-jpa</module>
-        <module>dbhelper-ejbb</module>
-        <module>dbhelper-ejbb</module>
+        <module>dbhelper-war</module>
         <module>dbhelper-ejb</module>
+        <module>dbhelper-app</module>
+        <module>dbhelper-api</module>
     </modules>
     <name>dbhelper</name>
     <url>http://maven.apache.org</url>
