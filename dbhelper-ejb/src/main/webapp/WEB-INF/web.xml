@@ -6,7 +6,7 @@
 <web-app>
     <servlet>
         <servlet-name>MyJTAServlet</servlet-name>
-        <servlet-class>ru.rbt.dbhelper.crud.OrderService</servlet-class>
+        <servlet-class>ru.rbt.dbhelper.war.MyServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

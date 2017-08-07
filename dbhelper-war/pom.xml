@@ -10,7 +10,7 @@
     <packaging>war</packaging>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.rbt.dbhelper-war</groupId>
+    <groupId>ru.rbt.dbhelper.war</groupId>
     <artifactId>dbhelper-war</artifactId>
     <version>1.0-SNAPSHOT</version>
 

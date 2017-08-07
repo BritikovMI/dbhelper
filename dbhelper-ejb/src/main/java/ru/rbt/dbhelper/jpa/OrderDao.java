@@ -18,7 +18,7 @@ public class OrderDao extends AbstractEntityDao{
     }
 
 
-    public List<Order> tail(int maxResults) {
+    public List<Order> tail(int    maxResults) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Order> criteria = builder.createQuery(Order.class);
         Root<Order> root = criteria.from(Order.class);

@@ -36,7 +36,7 @@
                     <type>ejb</type>
                 </dependency>
                 <dependency>
-                    <groupId>ru.rbt.dbhelper</groupId>
+                    <groupId>ru.rbt.dbhelper.war</groupId>
                     <artifactId>dbhelper-war</artifactId>
                     <version>1.0-SNAPSHOT</version>
                     <type>war</type>
