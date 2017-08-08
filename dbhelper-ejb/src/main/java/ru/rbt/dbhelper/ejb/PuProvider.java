@@ -1,4 +1,4 @@
-package ru.rbt.dbhelper.jpa;
+package ru.rbt.dbhelper.ejb;
 
 /**
  * Created by BritikovMI on 04.08.2017.

@@ -1,4 +1,4 @@
-package ru.rbt.dbhelper.jpa;
+package ru.rbt.dbhelper.ejb;
 
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;

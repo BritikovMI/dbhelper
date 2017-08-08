@@ -16,8 +16,8 @@
         <class>ru.rbt.dbhelper.utils.Cmd</class>
         <class>ru.rbt.dbhelper.utils.AlternateSelector</class>
 
-        <class>ru.rbt.dbhelper.jpa.OrderDao</class>
-        <class>ru.rbt.dbhelper.jpa.Order</class>
+        <class>ru.rbt.dbhelper.ejb.OrderDao</class>
+        <class>ru.rbt.dbhelper.ejb.Order</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 

@@ -1,4 +1,4 @@
-package ru.rbt.dbhelper.jpa;
+package ru.rbt.dbhelper.ejb;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,7 +8,7 @@ import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.util.List;
 
-import static ru.rbt.dbhelper.jpa.PuProvider.DBHELPER_PU;
+import static ru.rbt.dbhelper.ejb.PuProvider.DBHELPER_PU;
 
 /**
  * Базовая абстракция для фабрик иплементирует некоторые основные CRUD операции

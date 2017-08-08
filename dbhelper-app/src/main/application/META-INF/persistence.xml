@@ -12,11 +12,11 @@
         <jta-data-source>/jdbc/discountDS</jta-data-source>
 
 
-        <class>ru.rbt.dbhelper.jpa.Order</class>
+        <class>ru.rbt.dbhelper.ejb.Order</class>
 
-        <class>ru.rbt.dbhelper.jpa.OrderDao</class>
-        <class>ru.rbt.dbhelper.jpa.AbstractDbhelperEntity</class>
-        <class>ru.rbt.dbhelper.jpa.PuProvider</class>
+        <class>ru.rbt.dbhelper.ejb.OrderDao</class>
+        <class>ru.rbt.dbhelper.ejb.AbstractDbhelperEntity</class>
+        <class>ru.rbt.dbhelper.ejb.PuProvider</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
@@ -28,6 +28,11 @@
             <property name="eclipselink.logging.session" value="true"/>
             <property name="eclipselink.logging.level" value="INFO"/>
             <property name="eclipselink.jdbc.property.connection.transactionIsolation" value="2"/>
+
+            <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@dev.rbtechnologies.ru:1521:ELAR"/>
+            <property name="javax.persistence.jdbc.user" value="IRBIS"/>
+            <property name="javax.persistence.jdbc.password" value="irbis"/>
         </properties>
     </persistence-unit>
 </persistence>

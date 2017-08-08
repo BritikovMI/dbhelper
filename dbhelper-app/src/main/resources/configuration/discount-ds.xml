@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datasources>
 	<xa-datasource jndi-name="java:jboss/datasources/discountDS" pool-name="discountPool" enabled="true">
-		<xa-datasource-property name="ServerName">localhost</xa-datasource-property>
-		<xa-datasource-property name="PortNumber">5432</xa-datasource-property>
-		<xa-datasource-property name="DatabaseName">discount</xa-datasource-property>
-		<driver>postgresql</driver>
+		<xa-datasource-property name="ServerName">dev.rbtechnologies.ru</xa-datasource-property>
+		<xa-datasource-property name="PortNumber">1521</xa-datasource-property>
+		<xa-datasource-property name="DatabaseName">ELAR</xa-datasource-property>
+		<driver>oracle.jdbc.driver.OracleDriver</driver>
 		<xa-pool>
 			<min-pool-size>2</min-pool-size>
 			<max-pool-size>15</max-pool-size>
@@ -13,8 +13,8 @@
 			<flush-strategy>FailingConnectionOnly</flush-strategy>
 		</xa-pool>
 		<security>
-			<user-name>dbhelper</user-name>
-            <password>dbhelper</password>
+			<user-name>IRBIS</user-name>
+            <password>irbis</password>
 		</security>
 		<timeout>
 			<blocking-timeout-millis>30000</blocking-timeout-millis>

@@ -1,4 +1,5 @@
-package ru.rbt.dbhelper.jpa;
+package ru.rbt.dbhelper.ejb;
+
 
 import javax.ejb.Stateless;
 import javax.persistence.criteria.CriteriaBuilder;
