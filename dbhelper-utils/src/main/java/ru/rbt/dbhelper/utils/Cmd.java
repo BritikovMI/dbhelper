@@ -1,7 +1,5 @@
 package ru.rbt.dbhelper.utils;
 
-import com.sun.org.apache.bcel.internal.generic.Select;
-
 /**
  * Created by er23887 on 25.07.2017.
  */

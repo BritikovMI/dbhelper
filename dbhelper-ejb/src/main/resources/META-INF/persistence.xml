@@ -7,16 +7,7 @@
     <persistence-unit name="dbhelperPU" transaction-type="JTA">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <jta-data-source>/jdbc/dbhelperDS</jta-data-source>
-        <class>ru.rbt.dbhelper.war.MyServlet</class>
 
-        <class>ru.rbt.dbhelper.utils.QueryUtils</class>
-        <class>ru.rbt.dbhelper.utils.Main</class>
-        <class>ru.rbt.dbhelper.utils.JdbcProperties</class>
-        <class>ru.rbt.dbhelper.utils.ConnectionManager</class>
-        <class>ru.rbt.dbhelper.utils.Cmd</class>
-        <class>ru.rbt.dbhelper.utils.AlternateSelector</class>
-
-        <class>ru.rbt.dbhelper.ejb.OrderDao</class>
         <class>ru.rbt.dbhelper.ejb.Order</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>

@@ -15,7 +15,7 @@ import static ru.rbt.dbhelper.ejb.PuProvider.DBHELPER_PU;
  *
  * Created by misha on 03.03.17.
  */
-public abstract class AbstractEntityDao<I extends Serializable, E extends AbstractDbhelperEntity<I>> {
+public abstract class AbstractEntityDao<I extends Serializable, E> {
     @PersistenceContext(unitName = DBHELPER_PU)
     private EntityManager em;
 

@@ -2,6 +2,7 @@ package ru.rbt.dbhelper.ejb;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "BRM_ORDER")
-public class Order {
+public class Order implements Serializable{//implements serializable -abstractdbhelper - dbhelperentity//embdeded
     private static final long serialVersionUID = -6576973010070221989L;
     /**
      * Идентификатор
@@ -18,8 +19,6 @@ public class Order {
     private String date;
     private Long customer;
 
-    public Order() {
-    }
 
     @Id
     @Column(name = "ID_PK" )
@@ -45,7 +44,7 @@ public class Order {
     @Column(name = "CUSTOMER_ID", nullable = false)
     public Long getCustomer() {
         return customer;
-    }
+    } //list orders //one to many// user employee
 
     public void setCustomer(Long customer) {
         this.customer = customer;
