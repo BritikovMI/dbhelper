@@ -14,17 +14,17 @@ import java.util.List;
 @Stateless
 public class CustomerDao extends AbstractEntityDao {
     public CustomerDao() {
-        super(Order.class);
+        super(Customer.class);
     }
 
 
-    public List<Order> tail(int maxResults) { //ищет заказы по кастомеру
+    public List<Customer> tail(int maxResults) { //ищет заказы по кастомеру
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<Order> criteria = builder.createQuery(Order.class);
-        Root<Order> root = criteria.from(Order.class);
+        CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class);
+        Root<Customer> root = criteria.from(Customer.class);
         criteria.select(root);
-        criteria.orderBy(builder.desc(root.get(Order_.date)));
-        TypedQuery<Order> typed = getEntityManager().createQuery(criteria).setMaxResults(maxResults);
+
+        TypedQuery<Customer> typed = getEntityManager().createQuery(criteria).setMaxResults(maxResults);
         return typed.getResultList();
     }
 
@@ -57,7 +57,7 @@ public class CustomerDao extends AbstractEntityDao {
 
     protected Predicate getSearchPredicate(CriteriaBuilder builder, Root root, String s) {
         return builder.or(
-                builder.like(root.get(Order_.id), s),
-                builder.like(root.get(Order_.customer), s));
+                builder.like(root.get(Customer_.id), s),
+                builder.like(root.get(Customer_.nm), s));
     }
 }
