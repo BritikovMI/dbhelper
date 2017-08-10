@@ -16,8 +16,7 @@ public class Customer implements Serializable{//implements serializable -abstrac
      * Идентификатор
      */
     private Long id;
-    private String date;
-    private Long customer;
+    private String nm;
 
 
     @Id
@@ -32,24 +31,12 @@ public class Customer implements Serializable{//implements serializable -abstrac
 
     @NotNull
     @Column(name = "DATE_OF", nullable = false)
-    public String getDate() {
-        return date;
+    public String getNm() {
+        return nm;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setNm(String nm) {
+        this.nm = nm;
     }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID_PK" , nullable = true)
-    public Long getCustomer() {
-        return customer;
-    } //list orders //one to many// user employee
-
-    public void setCustomer(Long customer) {
-        this.customer = customer;
-    }
-
-
 
 }

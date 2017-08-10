@@ -16,8 +16,7 @@ public class Product implements Serializable{//implements serializable -abstract
      * Идентификатор
      */
     private Long id;
-    private String date;
-    private Long customer;
+    private String productType;
 
 
     @Id
@@ -31,25 +30,13 @@ public class Product implements Serializable{//implements serializable -abstract
     }
 
     @NotNull
-    @Column(name = "DATE_OF", nullable = false)
-    public String getDate() {
-        return date;
+    @Column(name = "PRODUCT_TYPE", nullable = false)
+    public String getProductType() {
+        return productType;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID_PK" , nullable = true)
-    public Long getCustomer() {
-        return customer;
-    } //list orders //one to many// user employee
-
-    public void setCustomer(Long customer) {
-        this.customer = customer;
-    }
-
-
 
 }

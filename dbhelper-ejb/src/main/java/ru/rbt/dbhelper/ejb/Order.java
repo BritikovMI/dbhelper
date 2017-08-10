@@ -40,14 +40,18 @@ public class Order implements Serializable{//implements serializable -abstractdb
         this.date = date;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "CUSTOER_ID", referencedColumnName = "ID_PK" , nullable = false)
     public Long getCustomer() {
         return customer;
-    } //list orders //one to many// user employee
+    }
 
     public void setCustomer(Long customer) {
         this.customer = customer;
     }
+
+
 
 
 

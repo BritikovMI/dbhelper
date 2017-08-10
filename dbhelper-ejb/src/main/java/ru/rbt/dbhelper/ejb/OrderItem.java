@@ -16,12 +16,12 @@ public class OrderItem implements Serializable{//implements serializable -abstra
      * Идентификатор
      */
     private Long id;
-    private String date;
-    private Long customer;
+    private Long orderId;
+    private Long productId;
 
 
     @Id
-    @Column(name = "ID_PK" )
+    @Column(name = "ORDER_ITEM_ID" )
     public Long getId() {
         return id;
     }
@@ -31,23 +31,25 @@ public class OrderItem implements Serializable{//implements serializable -abstra
     }
 
     @NotNull
-    @Column(name = "DATE_OF", nullable = false)
-    public String getDate() {
-        return date;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "ORDER_ID", referencedColumnName = "ID_PK" , nullable = false)
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID_PK" , nullable = true)
-    public Long getCustomer() {
-        return customer;
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID_PK" , nullable = false)
+    public Long getProductId() {
+        return productId;
     } //list orders //one to many// user employee
 
-    public void setCustomer(Long customer) {
-        this.customer = customer;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
 
