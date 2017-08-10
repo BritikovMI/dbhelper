@@ -10,7 +10,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "BRM_ORDER")
-public class Order implements Serializable{//implements serializable -abstractdbhelper - dbhelperentity//embdeded
+public class OrderItem implements Serializable{//implements serializable -abstractdbhelper - dbhelperentity//embdeded
     private static final long serialVersionUID = -6576973010070221989L;
     /**
      * Идентификатор
@@ -40,7 +40,8 @@ public class Order implements Serializable{//implements serializable -abstractdb
         this.date = date;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID_PK" , nullable = true)
     public Long getCustomer() {
         return customer;
     } //list orders //one to many// user employee
