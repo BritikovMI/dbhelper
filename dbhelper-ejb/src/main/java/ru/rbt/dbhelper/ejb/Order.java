@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by BritikovMI on 03.08.2017.
@@ -40,11 +41,12 @@ public class Order implements Serializable{//implements serializable -abstractdb
         this.date = date;
     }
 
+    Customer cust = new Customer();
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "CUSTOER_ID", referencedColumnName = "ID_PK" , nullable = false)
-    public Long getCustomer() {
-        return customer;
+    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID_PK" , nullable = false)
+    public List getCustomer() {
+        return cust.getId();
     }
 
     public void setCustomer(Long customer) {

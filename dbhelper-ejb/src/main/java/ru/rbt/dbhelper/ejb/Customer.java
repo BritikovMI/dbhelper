@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by BritikovMI on 03.08.2017.
@@ -15,17 +16,17 @@ public class Customer implements Serializable{//implements serializable -abstrac
     /**
      * Идентификатор
      */
-    private Long id;
+    private List<Long> id;
     private String nm;
 
 
     @Id
     @Column(name = "ID_PK" )
-    public Long getId() {
+    public List<Long> getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(List<Long> id) {
         this.id = id;
     }
 
