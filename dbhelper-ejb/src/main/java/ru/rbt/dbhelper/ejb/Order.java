@@ -3,8 +3,6 @@ package ru.rbt.dbhelper.ejb;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by BritikovMI on 03.08.2017.
@@ -18,7 +16,7 @@ public class Order implements Serializable{//implements serializable -abstractdb
      */
     private Long id;
     private String date;
-    private Customer customerId;
+    private Customer customer;//CustomerID!!!!!
 
 
     @Id
@@ -44,11 +42,11 @@ public class Order implements Serializable{//implements serializable -abstractdb
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID_PK" , nullable = false)
-    public Customer getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

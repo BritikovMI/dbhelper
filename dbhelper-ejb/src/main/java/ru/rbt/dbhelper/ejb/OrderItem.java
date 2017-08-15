@@ -3,7 +3,6 @@ package ru.rbt.dbhelper.ejb;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by BritikovMI on 03.08.2017.

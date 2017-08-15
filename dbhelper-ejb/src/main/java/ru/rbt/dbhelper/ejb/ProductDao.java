@@ -57,7 +57,7 @@ public class ProductDao extends AbstractEntityDao {
 
     protected Predicate getSearchPredicate(CriteriaBuilder builder, Root root, String s) {
         return builder.or(
-                builder.like(root.get(Order_.id), s),
-                builder.like(root.get(Order_.customer), s));
+                builder.like(root.get(Product_.id), s),
+                builder.like(root.get(Product_.productType), s));
     }
 }
