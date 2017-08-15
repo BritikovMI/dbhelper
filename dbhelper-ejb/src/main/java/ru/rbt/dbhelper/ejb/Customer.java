@@ -3,7 +3,6 @@ package ru.rbt.dbhelper.ejb;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ public class Customer implements Serializable{//implements serializable -abstrac
     /**
      * Идентификатор
      */
-    private List<Long> id;
+    private Long id;
     private String nm;
 
     public Customer() {
@@ -24,11 +23,11 @@ public class Customer implements Serializable{//implements serializable -abstrac
 
     @Id
     @Column(name = "ID_PK" )
-    public List<Long> getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(List<Long> id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

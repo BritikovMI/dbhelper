@@ -59,6 +59,7 @@ public class OrderDao extends AbstractEntityDao{
     protected Predicate getSearchPredicate(CriteriaBuilder builder, Root root, String s) {
         return builder.or(
                 builder.like(root.get(Order_.id), s),
+                builder.like(root.get(Order_.date), s),
                 builder.like(root.get(Order_.customer), s));
     }
 }

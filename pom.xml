@@ -22,6 +22,7 @@
         <ifrs.version>1.0-SNAPSHOT</ifrs.version>
         <tag.version>2.0-SNAPSHOT</tag.version>
         <gin.version>2.1.2</gin.version>
+        <version.eclipselink>2.6.2</version.eclipselink>
         <validation.version>1.0.0.GA</validation.version>
         <hibernate-validator.version>4.1.0.Final</hibernate-validator.version>
         <universal-analytics.version>2.1</universal-analytics.version>
@@ -29,6 +30,17 @@
     </properties>
 
     <dependencies>
+        <!-- JPA -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa</artifactId>
+            <version>${version.eclipselink}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+            <version>${version.eclipselink}</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -74,12 +86,7 @@
         <!--<version>2.6.4</version>-->
         <!--<scope>provided</scope>-->
         <!--</dependency>-->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-jpamodelgen</artifactId>
-            <version>4.3.10.Final</version>
-            <scope>provided</scope>
-        </dependency>
+
 
         <dependency>
             <groupId>com.google.gwt.inject</groupId>

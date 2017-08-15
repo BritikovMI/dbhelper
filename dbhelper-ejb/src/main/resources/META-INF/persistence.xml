@@ -9,6 +9,9 @@
         <jta-data-source>/jdbc/dbhelperDS</jta-data-source>
 
         <class>ru.rbt.dbhelper.ejb.Order</class>
+        <class>ru.rbt.dbhelper.ejb.Customer</class>
+        <class>ru.rbt.dbhelper.ejb.Product</class>
+        <class>ru.rbt.dbhelper.ejb.OrderItem</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 

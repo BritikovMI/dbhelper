@@ -1,7 +1,7 @@
 package ru.rbt.dbhelper.ejb;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 /**
@@ -16,7 +16,7 @@ public class Order implements Serializable{//implements serializable -abstractdb
      */
     private Long id;
     private String date;
-    private Customer customer;//CustomerID!!!!!
+    private Customer customer;
 
 
     @Id
