@@ -9,15 +9,15 @@ import java.util.Date;
  * Created by BritikovMI on 03.08.2017.
  */
 @Entity
-@Table(name = "BRM_ORDER")
+@Table(name = "BRM_ORDER_ITEM")
 public class OrderItem implements Serializable{//implements serializable -abstractdbhelper - dbhelperentity//embdeded
     private static final long serialVersionUID = -6576973010070221989L;
     /**
      * Идентификатор
      */
     private Long id;
-    private Long orderId;
-    private Long productId;
+    private Customer orderId;
+    private Product productId;
 
 
     @Id
@@ -33,22 +33,22 @@ public class OrderItem implements Serializable{//implements serializable -abstra
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "ORDER_ID", referencedColumnName = "ID_PK" , nullable = false)
-    public Long getOrderId() {
+    public Customer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public void setOrderId(Customer orderId) {
         this.orderId = orderId;
     }
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID_PK" , nullable = false)
-    public Long getProductId() {
+    public Product getProductId() {
         return productId;
     } //list orders //one to many// user employee
 
-    public void setProductId(Long productId) {
+    public void setProductId(Product productId) {
         this.productId = productId;
     }
 

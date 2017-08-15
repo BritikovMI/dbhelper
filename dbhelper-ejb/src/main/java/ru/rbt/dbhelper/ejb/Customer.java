@@ -10,7 +10,7 @@ import java.util.List;
  * Created by BritikovMI on 03.08.2017.
  */
 @Entity
-@Table(name = "BRM_ORDER")
+@Table(name = "BRM_CUSTOMER")
 public class Customer implements Serializable{//implements serializable -abstractdbhelper - dbhelperentity//embdeded
     private static final long serialVersionUID = -6576973010070221989L;
     /**
@@ -19,6 +19,8 @@ public class Customer implements Serializable{//implements serializable -abstrac
     private List<Long> id;
     private String nm;
 
+    public Customer() {
+    }
 
     @Id
     @Column(name = "ID_PK" )

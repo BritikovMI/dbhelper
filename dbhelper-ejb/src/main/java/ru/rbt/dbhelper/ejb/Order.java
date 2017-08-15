@@ -18,7 +18,7 @@ public class Order implements Serializable{//implements serializable -abstractdb
      */
     private Long id;
     private String date;
-    private Long customer;
+    private Customer customerId;
 
 
     @Id
@@ -41,20 +41,14 @@ public class Order implements Serializable{//implements serializable -abstractdb
         this.date = date;
     }
 
-    Customer cust = new Customer();
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID_PK" , nullable = false)
-    public List getCustomer() {
-        return cust.getId();
+    public Customer getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Long customer) {
-        this.customer = customer;
+    public void setCustomerId(Customer customerId) {
+        this.customerId = customerId;
     }
-
-
-
-
-
 }
