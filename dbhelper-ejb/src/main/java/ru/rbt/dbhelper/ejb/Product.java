@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by BritikovMI on 03.08.2017.
  */
 @Entity
-@Table(name = "BRM_ORDER")
+@Table(name = "BRM_PRODUCT")
 public class Product implements Serializable{//implements serializable -abstractdbhelper - dbhelperentity//embdeded
     private static final long serialVersionUID = -6576973010070221989L;
     /**
