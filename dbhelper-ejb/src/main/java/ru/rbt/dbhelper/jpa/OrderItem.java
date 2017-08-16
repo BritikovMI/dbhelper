@@ -1,7 +1,7 @@
-package ru.rbt.dbhelper.ejb;
+package ru.rbt.dbhelper.jpa;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 /**
@@ -15,8 +15,8 @@ public class OrderItem implements Serializable{//implements serializable -abstra
      * Идентификатор
      */
     private Long id;
-    private Customer orderId;
-    private Product productId;
+    private Customer order;
+    private Product product;
 
 
     @Id
@@ -32,23 +32,23 @@ public class OrderItem implements Serializable{//implements serializable -abstra
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "ORDER_ID", referencedColumnName = "ID_PK" , nullable = false)
-    public Customer getOrderId() {
-        return orderId;
+    public Customer getOrder() {
+        return order;
     }
 
-    public void setOrderId(Customer orderId) {
-        this.orderId = orderId;
+    public void setOrder(Customer order) {
+        this.order = order;
     }
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID_PK" , nullable = false)
-    public Product getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     } //list orders //one to many// user employee
 
-    public void setProductId(Product productId) {
-        this.productId = productId;
+    public void setProduct( Product product) {
+        this.product = product;
     }
 
 

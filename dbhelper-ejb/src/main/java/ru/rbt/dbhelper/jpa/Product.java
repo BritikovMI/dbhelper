@@ -1,25 +1,23 @@
-package ru.rbt.dbhelper.ejb;
+package ru.rbt.dbhelper.jpa;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 
 /**
  * Created by BritikovMI on 03.08.2017.
  */
 @Entity
-@Table(name = "BRM_CUSTOMER")
-public class Customer implements Serializable{//implements serializable -abstractdbhelper - dbhelperentity//embdeded
+@Table(name = "BRM_PRODUCT")
+public class Product implements Serializable{//implements serializable -abstractdbhelper - dbhelperentity//embdeded
     private static final long serialVersionUID = -6576973010070221989L;
     /**
      * Идентификатор
      */
     private Long id;
-    private String nm;
+    private String productType;
 
-    public Customer() {
-    }
 
     @Id
     @Column(name = "ID_PK" )
@@ -32,13 +30,13 @@ public class Customer implements Serializable{//implements serializable -abstrac
     }
 
     @NotNull
-    @Column(name = "DATE_OF", nullable = false)
-    public String getNm() {
-        return nm;
+    @Column(name = "PRODUCT_TYPE", nullable = false)
+    public String getProductType() {
+        return productType;
     }
 
-    public void setNm(String nm) {
-        this.nm = nm;
+    public void setProductType(String productType) {
+        this.productType = productType;
     }
 
 }

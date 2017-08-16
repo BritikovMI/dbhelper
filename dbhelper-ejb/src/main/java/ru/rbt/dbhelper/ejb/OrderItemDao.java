@@ -1,5 +1,7 @@
 package ru.rbt.dbhelper.ejb;
 
+import ru.rbt.dbhelper.jpa.*;
+
 import javax.ejb.Stateless;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.TypedQuery;
@@ -14,17 +16,17 @@ import java.util.List;
 @Stateless
 public class OrderItemDao extends AbstractEntityDao {
     public OrderItemDao() {
-        super(Order.class);
+        super(Customer.class);
     }
 
 
-    public List<Order> tail(int maxResults) { //ищет заказы по кастомеру
+    public List<Customer> tail(int maxResults) { //ищет заказы по кастомеру
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<Order> criteria = builder.createQuery(Order.class);
-        Root<Order> root = criteria.from(Order.class);
+        CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class);
+        Root<Customer> root = criteria.from(Customer.class);
         criteria.select(root);
-        criteria.orderBy(builder.desc(root.get(Order_.date)));
-        TypedQuery<Order> typed = getEntityManager().createQuery(criteria).setMaxResults(maxResults);
+        criteria.orderBy(builder.desc(root.get(String.valueOf(Customer_.id))));
+        TypedQuery<Customer> typed = getEntityManager().createQuery(criteria).setMaxResults(maxResults);
         return typed.getResultList();
     }
 
@@ -54,11 +56,10 @@ public class OrderItemDao extends AbstractEntityDao {
         return false;
     }
 
-
     protected Predicate getSearchPredicate(CriteriaBuilder builder, Root root, String s) {
         return builder.or(
                 builder.like(root.get(OrderItem_.id), s),
-                builder.like(root.get(OrderItem_.orderId), s),
-                builder.like(root.get(OrderItem_.productId), s));
+                builder.like(root.get(OrderItem_.product), s),
+                builder.like(root.get(OrderItem_.order), s));
     }
 }

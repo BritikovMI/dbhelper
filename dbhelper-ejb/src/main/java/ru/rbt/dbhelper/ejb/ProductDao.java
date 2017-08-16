@@ -1,5 +1,7 @@
 package ru.rbt.dbhelper.ejb;
 
+import ru.rbt.dbhelper.jpa.*;
+
 import javax.ejb.Stateless;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.TypedQuery;
@@ -14,7 +16,7 @@ import java.util.List;
 @Stateless
 public class ProductDao extends AbstractEntityDao {
     public ProductDao() {
-        super(Order.class);
+        super(Product.class);
     }
 
 
@@ -23,7 +25,7 @@ public class ProductDao extends AbstractEntityDao {
         CriteriaQuery<Order> criteria = builder.createQuery(Order.class);
         Root<Order> root = criteria.from(Order.class);
         criteria.select(root);
-        criteria.orderBy(builder.desc(root.get(Order_.date)));
+        criteria.orderBy(builder.desc(root.get(String.valueOf(Order_.id))));
         TypedQuery<Order> typed = getEntityManager().createQuery(criteria).setMaxResults(maxResults);
         return typed.getResultList();
     }

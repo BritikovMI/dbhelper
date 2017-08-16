@@ -1,4 +1,4 @@
-package ru.rbt.dbhelper.ejb;
+package ru.rbt.dbhelper.jpa;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
