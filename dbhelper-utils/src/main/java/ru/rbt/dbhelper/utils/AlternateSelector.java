@@ -5,7 +5,7 @@ package ru.rbt.dbhelper.utils;
  */
 public class AlternateSelector {
 
-    public static Cmd selector(String name) {
+    public static Cmd selector(String name) {//daoselector
         try {
             return Cmd.valueOf(name);
         } catch (Exception e) {
