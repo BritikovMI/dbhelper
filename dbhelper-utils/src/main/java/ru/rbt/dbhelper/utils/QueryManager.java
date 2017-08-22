@@ -6,12 +6,17 @@ import java.util.List;
 
 import ru.rbt.dbhelper.ejb.DaoSelector;
 
+import javax.inject.Inject;
+
 import static ru.rbt.dbhelper.utils.ConnectionManager.getConnection;
 
 /**
  * Created by er23887 on 26.07.2017.
  */
 public class QueryManager {
+
+    @Inject
+    private DaoSelector daoSelector;
 
     public List<String> runQuery(Long name) {
         List<String> list = new ArrayList();

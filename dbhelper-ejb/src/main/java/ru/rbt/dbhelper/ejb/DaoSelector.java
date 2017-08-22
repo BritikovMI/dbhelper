@@ -1,11 +1,14 @@
 package ru.rbt.dbhelper.ejb;
 
 
+import javax.inject.Inject;
 
 public class DaoSelector {
-    public static OrderDao daoSelect(Long number) {
-        OrderDao oDao = new OrderDao();
-        oDao.getCustomerOrders(number);
-        return oDao;
+
+    @Inject
+    private OrderDao orderDao;
+
+    public OrderDao daoSelect(Long number) {
+        return orderDao;
     }
 }
