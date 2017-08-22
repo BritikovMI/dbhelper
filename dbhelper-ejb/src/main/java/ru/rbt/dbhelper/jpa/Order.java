@@ -48,4 +48,13 @@ public class Order implements Serializable{//implements serializable -abstractdb
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    @Override
+    public String toString() {
+        return new StringBuilder().append("Order{")
+                .append("id=").append(id)
+                .append(", date='").append(date).append('\'')
+                .append(", customer=").append(customer.toString())
+                .append('}').toString();
+    }
 }

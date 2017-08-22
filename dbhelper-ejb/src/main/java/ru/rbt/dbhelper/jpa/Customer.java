@@ -40,4 +40,11 @@ public class Customer implements Serializable{//implements serializable -abstrac
         this.nm = nm;
     }
 
+    @Override
+    public String toString() {
+        return new StringBuilder().append("Customer{")
+                .append("id=").append(id)
+                .append(", nm='").append(nm).append('\'')
+                .append('}').toString();
+    }
 }

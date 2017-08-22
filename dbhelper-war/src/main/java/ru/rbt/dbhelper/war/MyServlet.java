@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -28,7 +30,13 @@ public class MyServlet extends HttpServlet {
         pw.println(name);
 
         pw.println("<h3>Your table</h3> <pre>");
-        pw.println(daoManager.handleRequest(name));
+
+        List<String> result = daoManager.handleRequest(name);
+
+        for (String s : result) {
+            pw.println(s);
+        }
+
         pw.println("</pre>");
         pw.close();
     }
