@@ -25,9 +25,10 @@ public class OrderItemDao extends AbstractEntityDao {
         CriteriaQuery<OrderItem> criteria = builder.createQuery(OrderItem.class);
         Root<OrderItem> root = criteria.from(OrderItem.class);
         criteria.select(root);
-        criteria.where(builder.equal(root.get(OrderItem_.order).get(Customer_.id), customerId));
-        criteria.where(builder.equal(root.get(OrderItem_.order), root.get(OrderItem_.product)));
-        criteria.where(builder.equal(root.get(OrderItem_.product), root.get(OrderItem_.product).get(Product_.id)));
+        criteria.where(builder.equal(root.get(OrderItem_.order).get(Customer_.id), customerId)).where(builder.equal(root.get(OrderItem_.order), root.get(OrderItem_.product))).where(builder.equal(root.get(OrderItem_.product), root.get(OrderItem_.product).get(Product_.id)));
+//        criteria.where(builder.equal(root.get(OrderItem_.order).get(Customer_.id), customerId));
+//        criteria.where(builder.equal(root.get(OrderItem_.order), root.get(OrderItem_.product)));
+//        criteria.where(builder.equal(root.get(OrderItem_.product), root.get(OrderItem_.product).get(Product_.id)));
         TypedQuery<OrderItem> query = getEntityManager().createQuery(criteria);
         List<OrderItem> result = query.getResultList();
         return result;
