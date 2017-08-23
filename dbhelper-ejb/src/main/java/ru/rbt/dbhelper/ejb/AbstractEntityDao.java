@@ -1,5 +1,7 @@
 package ru.rbt.dbhelper.ejb;
 
+import ru.rbt.dbhelper.jpa.OrderItem;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;

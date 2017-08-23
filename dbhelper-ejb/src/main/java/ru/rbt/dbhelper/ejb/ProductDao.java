@@ -20,4 +20,6 @@ public class ProductDao extends AbstractEntityDao {
         super(Product.class);
     }
 
+
+
 }

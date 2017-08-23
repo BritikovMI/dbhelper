@@ -5,10 +5,10 @@ import ru.rbt.dbhelper.ejb.OrderDao;
 import ru.rbt.dbhelper.ejb.OrderItemDao;
 import ru.rbt.dbhelper.ejb.ProductDao;
 import ru.rbt.dbhelper.jpa.Order;
+import ru.rbt.dbhelper.jpa.OrderItem;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,6 +34,9 @@ public class DaoManager {
         if (name == "customer-order") {
             List<Order> orders = orderDao.getOrdersByCustomerId(1L);
             orders.forEach(order -> result.add(order.toString()));
+        }else if(name == "product-customer"){
+            List<OrderItem> orderItems = orderItemDao.getProductsByCustomerId(2L);
+            orderItems.forEach(orderItem -> result.add(orderItem.toString()));
         }
         return result;
     }
