@@ -20,7 +20,7 @@ public class OrderDao extends AbstractEntityDao {
         super(Order.class);
     }
 
-    public List<Order> getOrdersByCustomerId(Long customerId){
+    public List<Order> getOrdersByCustomerId(Long customerId){//Получаем заказы определенного кастомера
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Order> criteria = builder.createQuery(Order.class);
         Root<Order> root = criteria.from(Order.class);

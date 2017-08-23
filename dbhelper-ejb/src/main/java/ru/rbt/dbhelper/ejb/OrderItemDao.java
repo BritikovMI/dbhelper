@@ -20,12 +20,12 @@ public class OrderItemDao extends AbstractEntityDao {
         super(Customer.class);
     }
 
-    public List<OrderItem> getProductsByCustomerId(Long customerId){
+    public List<OrderItem> getProductsByCustomerId(Long customerId){//Получаем products определенного Кастомера
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<OrderItem> criteria = builder.createQuery(OrderItem.class);
         Root<OrderItem> root = criteria.from(OrderItem.class);
         criteria.select(root);
-//        criteria.where(builder.equal(root.get(OrderItem_.order).get(Customer_.id), customerId)).where(builder.equal(root.get(OrderItem_.order), root.get(OrderItem_.product))).where(builder.equal(root.get(OrderItem_.product), root.get(OrderItem_.product).get(Product_.id)));
+//        criteria.where(builder.equal(root.get(OrderItem_.order).get(Customer_.id), customerId)).where(builder.equal(root.get(OrderItem_.product), root.get(OrderItem_.order))).where(builder.equal(root.get(OrderItem_.product).get(Product_.id), root.get(OrderItem_.product)));
         criteria.where(builder.equal(root.get(OrderItem_.order).get(Customer_.id), customerId));
         criteria.where(builder.equal(root.get(OrderItem_.product), root.get(OrderItem_.order)));
         criteria.where(builder.equal(root.get(OrderItem_.product).get(Product_.id), root.get(OrderItem_.product)));
