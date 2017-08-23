@@ -15,7 +15,7 @@ public class OrderItem implements Serializable{//implements serializable -abstra
      * Идентификатор
      */
     private Long id;
-    private Customer order;
+    private Order order;
     private Product product;
 
 
@@ -32,11 +32,11 @@ public class OrderItem implements Serializable{//implements serializable -abstra
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "ORDER_ID", referencedColumnName = "ID_PK" , nullable = false)
-    public Customer getOrder() {
+    public Order getOrder() {
         return order;
     }
 
-    public void setOrder(Customer order) {
+    public void setOrder(Order order) {
         this.order = order;
     }
 
