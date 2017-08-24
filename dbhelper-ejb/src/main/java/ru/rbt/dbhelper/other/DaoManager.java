@@ -15,7 +15,7 @@ import java.util.List;
  * Это CDI bean тут еще нет транзакций
  * тут мы еще не лезе в базульку
  * тут оперируем DAO-layer
- *
+ * <p>
  * Created by er23887 on 22.08.2017.
  */
 public class DaoManager {
@@ -31,10 +31,10 @@ public class DaoManager {
 
     public List<String> handleRequest(String name) {
         List<String> result = new ArrayList<>();
-        if (name == "customer-order") {
+        if (name.equals("customer-order")) {
             List<Order> orders = orderDao.getOrdersByCustomerId(1L);
             orders.forEach(order -> result.add(order.toString()));
-        }else if(name == "product-customer"){
+        } else if (name.equals("product-customer")) {
             List<OrderItem> orderItems = orderItemDao.getProductsByCustomerId(2L);
             orderItems.forEach(orderItem -> result.add(orderItem.toString()));
         }
