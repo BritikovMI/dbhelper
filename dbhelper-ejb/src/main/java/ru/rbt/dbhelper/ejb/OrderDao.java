@@ -14,7 +14,7 @@ import java.util.List;
  * Created by BritikovMI on 03.08.2017.
  */
 @Stateless
-public class OrderDao extends AbstractEntityDao {
+public class OrderDao extends AbstractEntityDao <Long, Order>{
 
     public OrderDao() {
         super(Order.class);

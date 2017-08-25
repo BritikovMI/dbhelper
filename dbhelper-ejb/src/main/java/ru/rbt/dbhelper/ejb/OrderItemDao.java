@@ -11,10 +11,10 @@ import java.util.*;
  * Created by BritikovMI on 03.08.2017.
  */
 @Stateless
-public class OrderItemDao extends AbstractEntityDao {
+public class OrderItemDao extends AbstractEntityDao<Long, OrderItem>{
 
     public OrderItemDao() {
-        super(Customer.class);
+        super(OrderItem.class);
     }
 
     public List<Product> getProductsByCustomerIdentifier(Long customerId){//Вот тут получаем products определенного Кастомера

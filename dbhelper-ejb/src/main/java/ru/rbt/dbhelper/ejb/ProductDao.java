@@ -14,7 +14,7 @@ import java.util.List;
  * Created by BritikovMI on 03.08.2017.
  */
 @Stateless
-public class ProductDao extends AbstractEntityDao {
+public class ProductDao extends AbstractEntityDao <Long, Product>{
 
     public ProductDao() {
         super(Product.class);
