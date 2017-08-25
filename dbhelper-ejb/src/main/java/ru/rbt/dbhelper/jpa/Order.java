@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "BRM_ORDER")
-public class Order implements Serializable{//implements serializable -abstractdbhelper - dbhelperentity//embdeded
+public class Order implements Serializable {//implements serializable -abstractdbhelper - dbhelperentity//embdeded
     private static final long serialVersionUID = -6576973010070221989L;
     /**
      * Идентификатор
@@ -19,7 +19,7 @@ public class Order implements Serializable{//implements serializable -abstractdb
     private Customer customer;
 
     @Id
-    @Column(name = "ID_PK" )
+    @Column(name = "ID_PK")
     public Long getId() {
         return id;
     }
@@ -40,7 +40,7 @@ public class Order implements Serializable{//implements serializable -abstractdb
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID_PK" , nullable = false)
+    @JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "ID_PK", nullable = false)
     public Customer getCustomer() {
         return customer;
     }

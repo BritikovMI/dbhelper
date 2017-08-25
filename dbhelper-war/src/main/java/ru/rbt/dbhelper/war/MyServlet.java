@@ -1,4 +1,5 @@
 package ru.rbt.dbhelper.war;
+
 import ru.rbt.dbhelper.other.DaoManager;
 
 import javax.inject.Inject;

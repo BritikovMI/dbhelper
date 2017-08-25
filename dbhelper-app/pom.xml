@@ -82,7 +82,9 @@
                         <artifactId>replacer</artifactId>
                         <configuration>
                             <file>${basedir}/src/main/application/META-INF/persistence.xml</file>
-                            <outputFile>${project.build.directory}/${project.artifactId}-${project.version}/META-INF/persistence.xml</outputFile>
+                            <outputFile>
+                                ${project.build.directory}/${project.artifactId}-${project.version}/META-INF/persistence.xml
+                            </outputFile>
                             <replacements>
                                 <replacement>
                                     <token>#dataSource#</token>
@@ -100,7 +102,9 @@
                         <artifactId>replacer</artifactId>
                         <configuration>
                             <file>${basedir}/src/main/application/log4j.properties</file>
-                            <outputFile>${project.build.directory}/${project.artifactId}-${project.version}/log4j.properties</outputFile>
+                            <outputFile>
+                                ${project.build.directory}/${project.artifactId}-${project.version}/log4j.properties
+                            </outputFile>
                             <replacements/>
                         </configuration>
                     </plugin>

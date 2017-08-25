@@ -14,7 +14,7 @@ import static ru.rbt.dbhelper.ejb.PuProvider.DBHELPER_PU;
 
 /**
  * Базовая абстракция для фабрик иплементирует некоторые основные CRUD операции
- *
+ * <p>
  * Created by misha on 03.03.17.
  */
 public abstract class AbstractEntityDao<I extends Serializable, E> {

@@ -14,13 +14,13 @@ import java.util.List;
  * Created by BritikovMI on 03.08.2017.
  */
 @Stateless
-public class OrderDao extends AbstractEntityDao <Long, Order>{
+public class OrderDao extends AbstractEntityDao<Long, Order> {
 
     public OrderDao() {
         super(Order.class);
     }
 
-    public List<Order> getOrdersByCustomerId(Long customerId){//Получаем заказы определенного кастомера
+    public List<Order> getOrdersByCustomerId(Long customerId) {//Получаем заказы определенного кастомера
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<Order> criteria = builder.createQuery(Order.class);
         Root<Order> root = criteria.from(Order.class);

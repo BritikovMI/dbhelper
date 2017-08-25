@@ -11,13 +11,13 @@ import java.util.*;
  * Created by BritikovMI on 03.08.2017.
  */
 @Stateless
-public class OrderItemDao extends AbstractEntityDao<Long, OrderItem>{
+public class OrderItemDao extends AbstractEntityDao<Long, OrderItem> {
 
     public OrderItemDao() {
         super(OrderItem.class);
     }
 
-    public List<Product> getProductsByCustomerIdentifier(Long customerId){//Вот тут получаем products определенного Кастомера
+    public List<Product> getProductsByCustomerIdentifier(Long customerId) {//Вот тут получаем products определенного Кастомера
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<OrderItem> criteria = builder.createQuery(OrderItem.class);
         Root<OrderItem> root = criteria.from(OrderItem.class);

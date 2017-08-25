@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "BRM_ORDER_ITEM")
-public class OrderItem implements Serializable{//implements serializable -abstractdbhelper - dbhelperentity//embdeded
+public class OrderItem implements Serializable {//implements serializable -abstractdbhelper - dbhelperentity//embdeded
     private static final long serialVersionUID = -6576973010070221989L;
     /**
      * Идентификатор
@@ -20,7 +20,7 @@ public class OrderItem implements Serializable{//implements serializable -abstra
 
 
     @Id
-    @Column(name = "ORDER_ITEM_ID" )
+    @Column(name = "ORDER_ITEM_ID")
     public Long getId() {
         return id;
     }
@@ -31,7 +31,7 @@ public class OrderItem implements Serializable{//implements serializable -abstra
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "ORDER_ID", referencedColumnName = "ID_PK" , nullable = false)
+    @JoinColumn(name = "ORDER_ID", referencedColumnName = "ID_PK", nullable = false)
     public Order getOrder() {
         return order;
     }
@@ -42,15 +42,14 @@ public class OrderItem implements Serializable{//implements serializable -abstra
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID_PK" , nullable = false)
+    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID_PK", nullable = false)
     public Product getProduct() {
         return product;
     } //list orders //one to many// user employee
 
-    public void setProduct( Product product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
-
 
 
 }
