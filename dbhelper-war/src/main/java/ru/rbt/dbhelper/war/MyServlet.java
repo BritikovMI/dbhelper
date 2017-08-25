@@ -25,6 +25,7 @@ public class MyServlet extends HttpServlet {
         String name = request.getParameter("name");
         response.setContentType("text/html");
         PrintWriter pw = response.getWriter();
+        pw.println("<pre>");
         pw.println("<h1>Hello, the name is: </h1>");
         pw.println(name);
 
