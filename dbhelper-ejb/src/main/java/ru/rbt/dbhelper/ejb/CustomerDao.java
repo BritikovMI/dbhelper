@@ -1,11 +1,8 @@
 package ru.rbt.dbhelper.ejb;
 
-import ru.rbt.dbhelper.jpa.*;
+import ru.rbt.dbhelper.jpa.Customer;
 
 import javax.ejb.Stateless;
-import javax.persistence.criteria.*;
-import javax.persistence.TypedQuery;
-import java.util.List;
 
 /**
  * Created by BritikovMI on 03.08.2017.

@@ -1,7 +1,7 @@
 package ru.rbt.dbhelper.jpa;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**

@@ -5,7 +5,6 @@ import ru.rbt.dbhelper.ejb.OrderDao;
 import ru.rbt.dbhelper.ejb.OrderItemDao;
 import ru.rbt.dbhelper.ejb.ProductDao;
 import ru.rbt.dbhelper.jpa.Order;
-import ru.rbt.dbhelper.jpa.OrderItem;
 import ru.rbt.dbhelper.jpa.Product;
 
 import javax.inject.Inject;

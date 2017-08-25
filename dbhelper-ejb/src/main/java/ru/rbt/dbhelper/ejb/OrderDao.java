@@ -1,13 +1,15 @@
 package ru.rbt.dbhelper.ejb;
 
 
-import ru.rbt.dbhelper.jpa.*;
+import ru.rbt.dbhelper.jpa.Customer_;
 import ru.rbt.dbhelper.jpa.Order;
+import ru.rbt.dbhelper.jpa.Order_;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.*;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
