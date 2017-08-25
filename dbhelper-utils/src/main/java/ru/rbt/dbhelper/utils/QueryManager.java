@@ -4,10 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.rbt.dbhelper.ejb.DaoSelector;
-
-import javax.inject.Inject;
-
+import static ru.rbt.dbhelper.utils.AlternateSelector.selector;
 import static ru.rbt.dbhelper.utils.ConnectionManager.getConnection;
 
 /**
@@ -15,64 +12,59 @@ import static ru.rbt.dbhelper.utils.ConnectionManager.getConnection;
  */
 public class QueryManager {
 
-    @Inject
-    private DaoSelector daoSelector;
-
     public List<String> runQuery(Long name) {
         List<String> list = new ArrayList();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        // Cmd cmd = selector(name);
-        DaoSelector dSel = new DaoSelector();
-        dSel.daoSelect(name);
+         Cmd cmd = selector("name");
 
         Connection con = getConnection();
-        try {
-            stmt = con.prepareStatement(dSel.toString());
-
-            rs = stmt.executeQuery(dSel.toString());
-            ResultSetMetaData metaData = rs.getMetaData();
-            int columnCount = metaData.getColumnCount();
-            for (int i = 0; i < columnCount; i++) {
-                list.add(metaData.getColumnName(i + 1) + "");
-            }
-            list.add("\n");
-            while (rs.next()) {
-                for (int i = 0; i < columnCount; i++) {
-                    list.add(rs.getObject(i + 1) + "");
-                }
-                list.add("\n");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeJdbc(con, stmt, rs);
-        }
 //        try {
-//            stmt = con.prepareStatement(cmd.toString());
-//            if (!cmd.isSelect()) {
-//                stmt.executeUpdate(cmd.toString());
-//                System.out.println("Record is updated to DBUSER table!");
-//            } else {
-//                rs = stmt.executeQuery(cmd.toString());
-//                ResultSetMetaData metaData = rs.getMetaData();
-//                int columnCount = metaData.getColumnCount();
+//            stmt = con.prepareStatement(dSel.toString());
+//
+//            rs = stmt.executeQuery(dSel.toString());
+//            ResultSetMetaData metaData = rs.getMetaData();
+//            int columnCount = metaData.getColumnCount();
+//            for (int i = 0; i < columnCount; i++) {
+//                list.add(metaData.getColumnName(i + 1) + "");
+//            }
+//            list.add("\n");
+//            while (rs.next()) {
 //                for (int i = 0; i < columnCount; i++) {
-//                    list.add(metaData.getColumnName(i + 1) + "");
+//                    list.add(rs.getObject(i + 1) + "");
 //                }
 //                list.add("\n");
-//                while (rs.next()) {
-//                    for (int i = 0; i < columnCount; i++) {
-//                        list.add(rs.getObject(i + 1) + "");
-//                    }
-//                    list.add("\n");
-//                }
 //            }
-//        } catch (Exception e) {
-//            System.out.println("Program error: " + e.getMessage());
+//        } catch (SQLException e) {
+//            e.printStackTrace();
 //        } finally {
 //            closeJdbc(con, stmt, rs);
 //        }
+        try {
+            stmt = con.prepareStatement(cmd.toString());
+            if (!cmd.isSelect()) {
+                stmt.executeUpdate(cmd.toString());
+                System.out.println("Record is updated to DBUSER table!");
+            } else {
+                rs = stmt.executeQuery(cmd.toString());
+                ResultSetMetaData metaData = rs.getMetaData();
+                int columnCount = metaData.getColumnCount();
+                for (int i = 0; i < columnCount; i++) {
+                    list.add(metaData.getColumnName(i + 1) + "");
+                }
+                list.add("\n");
+                while (rs.next()) {
+                    for (int i = 0; i < columnCount; i++) {
+                        list.add(rs.getObject(i + 1) + "");
+                    }
+                    list.add("\n");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Program error: " + e.getMessage());
+        } finally {
+            closeJdbc(con, stmt, rs);
+        }
         return list;
     }
 
