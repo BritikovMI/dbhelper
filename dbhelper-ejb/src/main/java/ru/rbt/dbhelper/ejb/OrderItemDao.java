@@ -17,6 +17,7 @@ public class OrderItemDao extends AbstractEntityDao {
         super(Customer.class);
     }
 
+    @Deprecated
     public List<OrderItem> getProductsByCustomerId(Long customerId){//А вот тут не продукты получаем а список заказов,
                                                                     // значит метод надо правильно называть
                                                                     // getOrderItemsByCustomerId ---- Получаем products определенного Кастомера

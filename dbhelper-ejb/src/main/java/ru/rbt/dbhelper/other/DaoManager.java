@@ -6,6 +6,7 @@ import ru.rbt.dbhelper.ejb.OrderItemDao;
 import ru.rbt.dbhelper.ejb.ProductDao;
 import ru.rbt.dbhelper.jpa.Order;
 import ru.rbt.dbhelper.jpa.OrderItem;
+import ru.rbt.dbhelper.jpa.Product;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -35,8 +36,8 @@ public class DaoManager {
             List<Order> orders = orderDao.getOrdersByCustomerId(1L);
             orders.forEach(order -> result.add(order.toString()));
         } else if (name.equals("product-customer")) {
-            List<OrderItem> orderItems = orderItemDao.getProductsByCustomerId(2L);
-            orderItems.forEach(orderItem -> result.add(orderItem.toString()));
+            List<Product> products = orderItemDao.getProductsByCustomerIdentifier(2L);
+            products.forEach(product -> result.add(product.getProductType()));
         }
         return result;
     }
