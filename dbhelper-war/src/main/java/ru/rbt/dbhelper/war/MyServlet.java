@@ -24,6 +24,8 @@ public class MyServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
+
+        response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         PrintWriter pw = response.getWriter();
         pw.println("<pre>");

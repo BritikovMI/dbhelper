@@ -16,6 +16,7 @@
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
+            <property name="javax.persistence.jtaDataSource" value="/jdbc/dbhelperDS" />
             <property name="eclipselink.ddl-generation" value="none"/>
             <property name="eclipselink.target-database" value="Oracle"/>
             <property name="eclipselink.target-server" value="WebLogic"/>

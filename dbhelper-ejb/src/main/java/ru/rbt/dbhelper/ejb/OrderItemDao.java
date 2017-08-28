@@ -21,7 +21,9 @@ public class OrderItemDao extends AbstractEntityDao<Long, OrderItem> {
         super(OrderItem.class);
     }
 
-    public List<Product> getProductsByCustomerIdentifier(Long customerId) {//Вот тут получаем products определенного Кастомера
+    public List<Product> getProductsByCustomerIdentifier(Long customerId) {
+        System.out.println("customerId = " + customerId);
+//        EntityManager entityManager = getEntityManager();
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<OrderItem> criteria = builder.createQuery(OrderItem.class);
         Root<OrderItem> root = criteria.from(OrderItem.class);
