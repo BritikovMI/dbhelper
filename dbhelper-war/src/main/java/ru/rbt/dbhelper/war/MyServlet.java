@@ -24,6 +24,8 @@ public class MyServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
+        String sNum = request.getParameter("id");
+        Long num = Long.parseLong(sNum);
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
@@ -34,7 +36,7 @@ public class MyServlet extends HttpServlet {
 
         pw.println("<h3>Your table</h3> <pre>");
 
-        List<String> result = daoManager.handleRequest(name);
+        List<String> result = daoManager.handleRequest(name, num);
 
         for (String s : result) {
             pw.println(s);

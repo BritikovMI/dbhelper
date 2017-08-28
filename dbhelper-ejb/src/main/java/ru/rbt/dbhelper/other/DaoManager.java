@@ -29,13 +29,13 @@ public class DaoManager {
     @Inject
     private OrderItemDao orderItemDao;
 
-    public List<String> handleRequest(String name) {
+    public List<String> handleRequest(String name, Long num) {
         List<String> result = new ArrayList<>();
         if (name.equals("customer-order")) {
-            List<Order> orders = orderDao.getOrdersByCustomerId(1L);
+            List<Order> orders = orderDao.getOrdersByCustomerId(num);
             orders.forEach(order -> result.add(order.toString()));
         } else if (name.equals("product-customer")) {
-            List<Product> products = orderItemDao.getProductsByCustomerIdentifier(1L);
+            List<Product> products = orderItemDao.getProductsByCustomerIdentifier(num);
             products.forEach(product -> result.add(product.getProductType()));
         } else {
             result.add("Необходимо ввести команду, в командную строку после ?name=");
