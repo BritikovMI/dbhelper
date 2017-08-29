@@ -33,9 +33,13 @@ public class DaoManager {
         List<String> result = new ArrayList<>();
         if (name.equals("customer-order")) {
             List<Order> orders = orderDao.getOrdersByCustomerId(num);
+            result.add("Получаем заказы определенного кастомера: ");
+            result.add("\n");
             orders.forEach(order -> result.add(order.toString()));
         } else if (name.equals("product-customer")) {
             List<Product> products = orderItemDao.getProductsByCustomerIdentifier(num);
+            result.add("Получаем продукты, купленные определенным кастомером: ");
+            result.add("\n");
             products.forEach(product -> result.add(product.getProductType()));
         } else {
             result.add("Необходимо ввести команду, в командную строку после ?name=");

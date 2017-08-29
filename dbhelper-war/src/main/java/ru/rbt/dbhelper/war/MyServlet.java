@@ -31,10 +31,7 @@ public class MyServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter pw = response.getWriter();
         pw.println("<pre>");
-        pw.println("<h1>Hello, the name is: </h1>");
-        pw.println(name);
-
-        pw.println("<h3>Your table</h3> <pre>");
+        pw.println("<h1>Hello, the name is: </h1>" + name + "<h3>Your table</h3>");
 
         List<String> result = daoManager.handleRequest(name, num);
 
