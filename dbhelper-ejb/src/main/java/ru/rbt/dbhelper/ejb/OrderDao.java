@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
@@ -38,5 +39,10 @@ public class OrderDao extends AbstractEntityDao<Long, Order> {
 //        query.select(joinTab).where(builder.equal(root.get(Customer_.id), id));
 //        List<Customer> custOrders = getEntityManager().createQuery(query).getResultList();
 //        return custOrders;
+    }
+    protected Predicate getSearchPredicate(CriteriaBuilder builder, Root<Order> root, String s) {
+        return builder.or(
+                builder.like(root.get(Order_.date), s),
+                builder.like(root.get(Order_.name), s));
     }
 }

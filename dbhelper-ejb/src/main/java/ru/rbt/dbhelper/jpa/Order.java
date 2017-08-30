@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "BRM_ORDER")
-public class Order implements Serializable {//implements serializable -abstractdbhelper - dbhelperentity//embdeded
+public class Order extends AbstractUiEntity<Long> implements Serializable {//implements serializable -abstractdbhelper - dbhelperentity//embdeded
     private static final long serialVersionUID = -6576973010070221989L;
     /**
      * Идентификатор
