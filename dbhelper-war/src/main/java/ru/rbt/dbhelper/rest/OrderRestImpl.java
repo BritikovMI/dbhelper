@@ -9,7 +9,7 @@ import java.util.List;
  * Created by KryukovMV on 23.03.2017.
  */
 @Stateless
-public class OrderRestImpl extends Order implements OrderRest {
+public class OrderRestImpl implements OrderRest {
 
     @Override
     public List<Order> findByName(Long id, String name) {
