@@ -13,8 +13,8 @@ import java.util.List;
 @Produces("application/json;charset=UTF-8")
 public interface OrderRest {
     @GET
-    @Path("/nameid/{id}/{name}")
-    List<Order> findByNameAndId(@PathParam("id") Long id,
-                            @PathParam("name") String name);
+    @Path("/findby/name/{name}/id/{id}")
+    List<Order> findByNameAndId(@PathParam("name") String name,
+                                @PathParam("id") Long id);
 
 }
