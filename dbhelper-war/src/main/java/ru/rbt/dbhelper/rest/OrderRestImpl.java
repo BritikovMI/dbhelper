@@ -12,7 +12,7 @@ import java.util.List;
 public class OrderRestImpl implements OrderRest {
 
     @Override
-    public List<Order> findByName(Long id, String name) {
+    public List<Order> findByNameAndId(Long id, String name) {
         return null;
     }
 }
