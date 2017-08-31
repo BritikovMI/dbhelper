@@ -3,6 +3,7 @@ package ru.rbt.dbhelper.rest;
 import ru.rbt.dbhelper.jpa.Order;
 
 import javax.ws.rs.*;
+import java.util.List;
 
 /**
  * Created by KryukovMV on 23.03.2017.
@@ -19,7 +20,7 @@ public interface OrderRest {
 
     @GET
     @Path("/name/{id}/{name}")
-    Order findByAliasOrName(@PathParam("id") Long id,
+    List<Order> findByName(@PathParam("id") Long id,
                             @PathParam("name") String name);
 
 }
