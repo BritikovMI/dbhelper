@@ -11,10 +11,6 @@ import java.util.List;
 @Stateless
 public class OrderRestImpl extends Order implements OrderRest {
 
-    public OrderRestImpl (){
-        super(Order.class);
-    }
-
     @Override
     public List<Order> findByName(Long id, String name) {
         return null;

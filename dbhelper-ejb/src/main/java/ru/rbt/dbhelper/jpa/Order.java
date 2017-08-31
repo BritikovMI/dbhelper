@@ -18,9 +18,6 @@ public class Order implements Serializable {//implements serializable -abstractd
     private String date;
     private Customer customer;
 
-    public Order(Class<Order> orderClass) {
-    }
-
     @Id
     @Column(name = "ID_PK")
     public Long getId() {
