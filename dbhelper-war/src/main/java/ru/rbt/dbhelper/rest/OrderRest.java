@@ -1,20 +1,20 @@
 package ru.rbt.dbhelper.rest;
 
-import ru.rbt.dbhelper.jpa.Order;
-
-import javax.ws.rs.*;
-import java.util.List;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 /**
  * Created by KryukovMV on 23.03.2017.
  */
 @Path("/order")
-@Consumes("application/json;charset=UTF-8")
-@Produces("application/json;charset=UTF-8")
+@Produces("text/plain;charset=UTF-8")
 public interface OrderRest {
     @GET
     @Path("/findby/name/{name}/id/{id}")
-    List<Order> findByNameAndId(@PathParam("name") String name,
-                                @PathParam("id") Long id);
+    Response findByNameAndId(@PathParam("name") String name,
+                             @PathParam("id") Long id);
 
 }
