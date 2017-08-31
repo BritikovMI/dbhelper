@@ -12,12 +12,6 @@ import java.util.List;
 @Consumes("application/json;charset=UTF-8")
 @Produces("application/json;charset=UTF-8")
 public interface OrderRest {
-
-    @GET
-    @Path("/echo")
-    @Produces("text/plain;charset=UTF-8")
-    String echo();
-
     @GET
     @Path("/name/{id}/{name}")
     List<Order> findByName(@PathParam("id") Long id,
