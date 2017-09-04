@@ -4,13 +4,28 @@
         "http://java.sun.com/j2ee/dtds/web-app_2_2.dtd">
 
 <web-app>
+    <!--<servlet>-->
+        <!--<servlet-name>MyServlet</servlet-name>-->
+        <!--<servlet-class>ru.rbt.dbhelper.war.MyServlet</servlet-class>-->
+    <!--</servlet>-->
+
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>MyServlet</servlet-name>-->
+        <!--<url-pattern>/</url-pattern>-->
+    <!--</servlet-mapping>-->
+
     <servlet>
-        <servlet-name>MyServlet</servlet-name>
+        <servlet-name>javax.ws.rs.core.Application</servlet-name>
         <servlet-class>ru.rbt.dbhelper.war.MyServlet</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>ru.rbt.dbhelper.rest.OrderRestImpl</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>MyServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>javax.ws.rs.core.Application</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 </web-app>
