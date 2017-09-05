@@ -10,8 +10,8 @@ import javax.ws.rs.core.Response;
 @Produces("text/plain;charset=UTF-8")
 public interface OrderRest {
     @GET
-    @Path("/findby/")
-    Response findByNameAndId(@QueryParam("name") String name,
-                             @QueryParam("id") Long id);
+    @Path("/findby/name/{name}/id/{id}")
+    Response findByNameAndId(@PathParam("name") String name,
+                             @PathParam("id") Long id);
 
 }
