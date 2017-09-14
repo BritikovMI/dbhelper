@@ -22,6 +22,7 @@ public class MyServlet extends HttpServlet {
 
     @Inject
     private OrderRestImpl orderRestImpl;
+    //private DaoManager daoManager;
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] myParams = request.getRequestURI().split("/");
@@ -38,7 +39,7 @@ public class MyServlet extends HttpServlet {
 
 //        List<String> result = daoManager.handleRequest(name, num);
 
-        orderRestImpl.findByNameAndId(name, num);
+        pw.println(orderRestImpl.findByNameAndId(name, num));
 
 //        for (String s : result) {
 //            pw.println(s);
