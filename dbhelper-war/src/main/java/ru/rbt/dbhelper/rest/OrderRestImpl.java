@@ -22,15 +22,17 @@ public class OrderRestImpl implements OrderRest {
 
     @Override
     public Response findByNameAndId(String name, Long id) {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("Hello, the name is: " + name + " Your table \n\n");
-//        List<String> result = daoManager.handleRequest(name, id);
-//        for (String s : result) {
-//            sb.append(s).append('\n');
-//        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("Hello, the name is: " + name + " Your table \n\n");
+        List<String> result = daoManager.handleRequest(name, id);
+        for (String s : result) {
+            sb.append(s).append('\n');
+        }
 
 
-        Response theBestResponseIveEverMade = Response.ok("new").build();
+        Response theBestResponseIveEverMade = Response.ok(result).type("text/plain").build();
+//        Book responseBook = theBestResponseIveEverMade.readEntity(Book.class);
         return theBestResponseIveEverMade;
+//        return Response.status(Response.Status.theBestResponseIveEverMade).entity("new").type("text/plain").build();
     }
 }
