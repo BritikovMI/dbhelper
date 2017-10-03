@@ -5,6 +5,9 @@
     <artifactId>dbhelper-parent</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>dbhelper-parser</module>
+    </modules>
 
     <name>DbHelper Project</name>
     <url>http://maven.apache.org</url>
@@ -81,6 +84,7 @@
                 <module>dbhelper-ejb</module>
                 <module>dbhelper-war</module>
                 <module>dbhelper-app</module>
+                <module>dbhelper-parser</module>
             </modules>
         </profile>
     </profiles>

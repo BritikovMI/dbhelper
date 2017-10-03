@@ -1,5 +1,6 @@
 package ru.rbt.dbhelper.rest;
 
+import ru.rbt.dbhelper.jpa.Order;
 import ru.rbt.dbhelper.other.DaoManager;
 
 import javax.ejb.Stateless;
@@ -31,7 +32,6 @@ public class OrderRestImpl implements OrderRest {
 
 
         Response theBestResponseIveEverMade = Response.ok(result).type("text/plain").build();
-//        Book responseBook = theBestResponseIveEverMade.readEntity(Book.class);
         return theBestResponseIveEverMade;
 //        return Response.status(Response.Status.theBestResponseIveEverMade).entity("new").type("text/plain").build();
     }
