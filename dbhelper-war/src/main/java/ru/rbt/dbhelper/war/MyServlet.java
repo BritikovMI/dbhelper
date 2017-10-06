@@ -32,9 +32,13 @@ public class MyServlet extends HttpServlet {
     String[] dCourse;
     String preFinalSCourse[];
     String finalSCourse;
-    //For dParser
-    Queue<Double> queue = new PriorityQueue<>();
     Double finalCourse;
+    //For dParser
+    //For queue analyze Thread threadRead
+    static Double currentElem;
+    static LinkedList<Double> courseElements = new LinkedList<>();
+    volatile static Queue<Double> queue = new PriorityQueue<>();
+    //For queue analyze Thread threadRead
     @Inject
     private OrderRestImpl orderRestImpl;
 
@@ -64,8 +68,8 @@ public class MyServlet extends HttpServlet {
         Thread threadWrite = new Thread(() -> {
             while (true) {
                 try {
-                    Thread.sleep(5000);
                     siteLoader(sb);
+                    Thread.sleep(500);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
@@ -77,12 +81,30 @@ public class MyServlet extends HttpServlet {
                 finalSCourse = preFinalSCourse[0] + "." + preFinalSCourse[1];
                 finalCourse = Double.parseDouble(finalSCourse);
                 queue.add(finalCourse);
-                Thread.yield();
             }
         });
 
-        Thread threadRead = new Thread(()->{
-            pw.print(queue);
+        Thread threadRead = new Thread(() -> {
+            while (true) {
+                courseElements.clear();
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                do {
+                    currentElem = queue.poll();
+                    if (currentElem != null)
+                        courseElements.add(currentElem);
+                }while (currentElem != null);
+                if (courseElements.getFirst() > courseElements.getLast()){
+                    pw.println("The rate increased by: " + (courseElements.getFirst() - courseElements.getLast()));
+                }else if (courseElements.getLast() > courseElements.getFirst()){
+                    pw.println("The rate fell by: " + (courseElements.getLast() - courseElements.getFirst()));
+                }else{
+                    pw.println("The rate has not changed and is equal to: " + courseElements.getFirst());
+                }
+            }
         });
 
 
@@ -121,11 +143,7 @@ public class MyServlet extends HttpServlet {
 
     public String siteLoader(StringBuilder sb) throws IOException {
         getDate();
-
-        if (day < 10)
-            newDate = "0" + dayS;
-        else
-            newDate = dayS;
+        newDate = dayS;
         if (month < 10)
             newMonth = "0" + String.valueOf(month);
         else
@@ -148,22 +166,22 @@ public class MyServlet extends HttpServlet {
         return newSb;
     }
 
- /*   public void getContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/plain");
+    /*   public void getContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+           response.setContentType("text/plain");
 
-        PrintWriter out = response.getWriter();
+           PrintWriter out = response.getWriter();
 
-        StringBuilder stringBuilder = new StringBuilder(1000);
-        Scanner scanner = new Scanner(request.getInputStream());
-        while (scanner.hasNextLine()) {
-            stringBuilder.append(scanner.nextLine());
-        }
+           StringBuilder stringBuilder = new StringBuilder(1000);
+           Scanner scanner = new Scanner(request.getInputStream());
+           while (scanner.hasNextLine()) {
+               stringBuilder.append(scanner.nextLine());
+           }
 
-        String body = stringBuilder.toString();
+           String body = stringBuilder.toString();
 
-        System.out.println(body);
-    }
-*/
+           System.out.println(body);
+       }
+   */
     public void getDate() {
         Date date = new Date();
         String dateS = date.toString();
