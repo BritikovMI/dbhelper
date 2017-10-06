@@ -1,6 +1,5 @@
 package ru.rbt.dbhelper.war;
 
-import ru.rbt.dbhelper.parser.Loader;
 import ru.rbt.dbhelper.rest.OrderRestImpl;
 
 import javax.inject.Inject;
@@ -13,6 +12,10 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 
 /**
@@ -21,24 +24,25 @@ import java.util.*;
 @WebServlet(name = "MyServlet", urlPatterns = {"/"})
 public class MyServlet extends HttpServlet {
     //For getDateMethod
-    String newDate, newMonth;
+//    String newDate, newMonth;
     String dayS, monthS, yearS;
     int day;
     int month;
     int year;
     //For getDateMethod
-    //For dParser
-    String[] value;
-    String[] dCourse;
-    String preFinalSCourse[];
-    String finalSCourse;
-    Double finalCourse;
-    //For dParser
+//    //For dParser
+//    String[] value;
+//    String[] dCourse;
+//    String preFinalSCourse[];
+//
+//    //For dParser
     //For queue analyze Thread threadRead
     static Double currentElem;
     static LinkedList<Double> courseElements = new LinkedList<>();
     volatile static Queue<Double> queue = new PriorityQueue<>();
     //For queue analyze Thread threadRead
+
+    String courseD[];
     @Inject
     private OrderRestImpl orderRestImpl;
 
@@ -65,22 +69,27 @@ public class MyServlet extends HttpServlet {
 //            pw.println(s);
 //        }
 
+
         Thread threadWrite = new Thread(() -> {
+            Double finalCourse = .0;
             while (true) {
                 try {
-                    siteLoader(sb);
-                    Thread.sleep(500);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    finalCourse = siteParser(sb);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                value = sb.toString().split("<Value>");
-                dCourse = value[11].split("</Value>");
-                preFinalSCourse = dCourse[0].split(",");
-                finalSCourse = preFinalSCourse[0] + "." + preFinalSCourse[1];
-                finalCourse = Double.parseDouble(finalSCourse);
+//                value = sb.toString().split("<Value>");
+//                dCourse = value[11].split("</Value>");
+//                preFinalSCourse = dCourse[0].split(",");
+//                finalSCourse = preFinalSCourse[0] + "." + preFinalSCourse[1];
+//                finalCourse = Double.parseDouble(finalSCourse);
                 queue.add(finalCourse);
+//                pw.println("Hello from " + Thread.currentThread());
+                pw.println("i");
+
             }
         });
 
@@ -88,7 +97,7 @@ public class MyServlet extends HttpServlet {
             while (true) {
                 courseElements.clear();
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -109,9 +118,9 @@ public class MyServlet extends HttpServlet {
 
 
         try {
-            threadWrite.start();
+//            threadWrite.start();
             threadRead.start();
-            threadWrite.join();
+//            threadWrite.join();
             threadRead.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -142,14 +151,14 @@ public class MyServlet extends HttpServlet {
     }
 
     public String siteLoader(StringBuilder sb) throws IOException {
-        getDate();
-        newDate = dayS;
-        if (month < 10)
-            newMonth = "0" + String.valueOf(month);
-        else
-            newMonth = String.valueOf(month);
+//        getDate();
+//        newDate = dayS;
+//        if (month < 10)
+//            newMonth = "0" + String.valueOf(month);
+//        else
+//            newMonth = String.valueOf(month);
 
-        URLConnection connection = new URL("http://www.cbr.ru/scripts/XML_daily.asp?date_req=" + newDate + "/" + newMonth + "/" + year).openConnection();
+        URLConnection connection = new URL("https://www.calc.ru/forex-USD-RUB.html").openConnection();
 
         InputStream is = connection.getInputStream();
         InputStreamReader reader = new InputStreamReader(is);
@@ -166,6 +175,21 @@ public class MyServlet extends HttpServlet {
         return newSb;
     }
 
+    public Double siteParser(StringBuilder sb) throws IOException {
+        String finalSCourse;
+        Double finalCourse;
+        String HTMLSTring =  siteLoader(sb);
+
+        Document html = Jsoup.parse(HTMLSTring);
+
+        String h1 = html.body().getElementsByClass("t18").text();
+
+        courseD = h1.split(" ");
+        finalSCourse = courseD[3];
+
+        finalCourse = Double.parseDouble(finalSCourse);
+        return finalCourse;
+    }
     /*   public void getContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
            response.setContentType("text/plain");
 
