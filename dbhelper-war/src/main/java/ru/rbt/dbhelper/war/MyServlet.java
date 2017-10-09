@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,10 +25,10 @@ import org.jsoup.nodes.Document;
 public class MyServlet extends HttpServlet {
     //For getDateMethod
 //    String newDate, newMonth;
-    String dayS, monthS, yearS;
-    int day;
-    int month;
-    int year;
+//    String dayS, monthS, yearS;
+//    int day;
+//    int month;
+//    int year;
     //For getDateMethod
 //    //For dParser
 //    String[] value;
@@ -71,11 +71,12 @@ public class MyServlet extends HttpServlet {
 
 
         Thread threadWrite = new Thread(() -> {
-            Double finalCourse = .0;
-            while (true) {
+            Double finalCourse = Double.valueOf(0);
+            Integer i = Integer.valueOf(0);
+            do {
                 try {
                     finalCourse = siteParser(sb);
-                    Thread.sleep(100);
+                    Thread.sleep(5000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -88,16 +89,19 @@ public class MyServlet extends HttpServlet {
 //                finalCourse = Double.parseDouble(finalSCourse);
                 queue.add(finalCourse);
 //                pw.println("Hello from " + Thread.currentThread());
-                pw.println("i");
 
-            }
+                i++;
+            } while (i < 24);
+            Thread.interrupted();
         });
 
         Thread threadRead = new Thread(() -> {
-            while (true) {
+                Boolean comparetto = false;
+//            Integer i = Integer.valueOf(0);
+//            do {
                 courseElements.clear();
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(120000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -105,27 +109,31 @@ public class MyServlet extends HttpServlet {
                     currentElem = queue.poll();
                     if (currentElem != null)
                         courseElements.add(currentElem);
-                }while (currentElem != null);
-                if (courseElements.getFirst() > courseElements.getLast()){
-                    pw.println("The rate increased by: " + (courseElements.getFirst() - courseElements.getLast()));
-                }else if (courseElements.getLast() > courseElements.getFirst()){
-                    pw.println("The rate fell by: " + (courseElements.getLast() - courseElements.getFirst()));
-                }else{
+                } while (currentElem != null);
+                if (courseElements.getFirst() < courseElements.getLast() ) {
+                    pw.println("The rate fell by: " + (courseElements.getFirst() - courseElements.getLast()) + " and amounted to " + courseElements.getLast());
+                } else if (courseElements.getLast() > courseElements.getFirst()) {
+                    pw.println("The rate increased by: " + (courseElements.getLast() - courseElements.getFirst()) + " and amounted to " + courseElements.getLast());
+                } else {
                     pw.println("The rate has not changed and is equal to: " + courseElements.getFirst());
                 }
-            }
+//                i++;
+//            } while (i < 1);
+            Thread.interrupted();
         });
 
 
         try {
-//            threadWrite.start();
+            threadWrite.start();
             threadRead.start();
-//            threadWrite.join();
+            threadWrite.join();
             threadRead.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
+        threadWrite.interrupt();
+        threadRead.interrupt();
 //        Runnable task = () -> {
 //            try {
 //                siteLoader(sb);
@@ -178,7 +186,7 @@ public class MyServlet extends HttpServlet {
     public Double siteParser(StringBuilder sb) throws IOException {
         String finalSCourse;
         Double finalCourse;
-        String HTMLSTring =  siteLoader(sb);
+        String HTMLSTring = siteLoader(sb);
 
         Document html = Jsoup.parse(HTMLSTring);
 
@@ -190,6 +198,7 @@ public class MyServlet extends HttpServlet {
         finalCourse = Double.parseDouble(finalSCourse);
         return finalCourse;
     }
+
     /*   public void getContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
            response.setContentType("text/plain");
 
@@ -206,59 +215,59 @@ public class MyServlet extends HttpServlet {
            System.out.println(body);
        }
    */
-    public void getDate() {
-        Date date = new Date();
-        String dateS = date.toString();
-        String[] dateSt = dateS.split(" ");
-
-        monthS = dateSt[1];
-        dayS = dateSt[2];
-        yearS = dateSt[5];
-
-        day = Integer.parseInt(dayS);
-        year = Integer.parseInt(yearS);
-        switch (monthS) {
-            case "Jan":
-                month = 1;
-                break;
-            case "Feb":
-                month = 2;
-                break;
-            case "Mar":
-                month = 3;
-                break;
-            case "Apr":
-                month = 4;
-                break;
-            case "May":
-                month = 5;
-                break;
-            case "Jun":
-                month = 6;
-                break;
-            case "Jul":
-                month = 7;
-                break;
-            case "Aug":
-                month = 8;
-                break;
-            case "Sep":
-                month = 9;
-                break;
-            case "Oct":
-                month = 10;
-                break;
-            case "Nov":
-                month = 11;
-                break;
-            case "Dec":
-                month = 12;
-                break;
-            default:
-                month = 0;
-                break;
-        }
-
-    }
+//    public void getDate() {
+//        Date date = new Date();
+//        String dateS = date.toString();
+//        String[] dateSt = dateS.split(" ");
+//
+//        monthS = dateSt[1];
+//        dayS = dateSt[2];
+//        yearS = dateSt[5];
+//
+//        day = Integer.parseInt(dayS);
+//        year = Integer.parseInt(yearS);
+//        switch (monthS) {
+//            case "Jan":
+//                month = 1;
+//                break;
+//            case "Feb":
+//                month = 2;
+//                break;
+//            case "Mar":
+//                month = 3;
+//                break;
+//            case "Apr":
+//                month = 4;
+//                break;
+//            case "May":
+//                month = 5;
+//                break;
+//            case "Jun":
+//                month = 6;
+//                break;
+//            case "Jul":
+//                month = 7;
+//                break;
+//            case "Aug":
+//                month = 8;
+//                break;
+//            case "Sep":
+//                month = 9;
+//                break;
+//            case "Oct":
+//                month = 10;
+//                break;
+//            case "Nov":
+//                month = 11;
+//                break;
+//            case "Dec":
+//                month = 12;
+//                break;
+//            default:
+//                month = 0;
+//                break;
+//        }
+//
+//    }
 
 }
