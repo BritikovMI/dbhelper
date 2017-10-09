@@ -114,9 +114,9 @@ public class MyServlet extends HttpServlet {
             first = courseElements.getFirst();
             last = courseElements.getLast();
             compare = first.compareTo(last);
-            if (compare == 1) {
+            if (compare == -1) {
                 pw.println("The rate fell by: " + (first.subtract(last)) + " and amounted to " + last);
-            } else if (compare == -1) {
+            } else if (compare == 1) {
                 pw.println("The rate increased by: " + (last.subtract(first)) + " and amounted to " + last);
             } else {
                 pw.println("The rate has not changed and is equal to: " + first);
