@@ -37,9 +37,9 @@ public class MyServlet extends HttpServlet {
 //
 //    //For dParser
     //For queue analyze Thread threadRead
-    static Double currentElem;
-    static LinkedList<Double> courseElements = new LinkedList<>();
-    volatile static Queue<Double> queue = new PriorityQueue<>();
+    static BigDecimal currentElem;
+    static LinkedList<BigDecimal> courseElements = new LinkedList<>();
+    volatile static Queue<BigDecimal> queue = new PriorityQueue<>();
     //For queue analyze Thread threadRead
 
     String courseD[];
@@ -71,7 +71,7 @@ public class MyServlet extends HttpServlet {
 
 
         Thread threadWrite = new Thread(() -> {
-            Double finalCourse = Double.valueOf(0);
+            BigDecimal finalCourse = BigDecimal.valueOf(0);
             Integer i = Integer.valueOf(0);
             do {
                 try {
@@ -96,27 +96,31 @@ public class MyServlet extends HttpServlet {
         });
 
         Thread threadRead = new Thread(() -> {
-                Boolean comparetto = false;
+            int compare;
+            BigDecimal first, last;
 //            Integer i = Integer.valueOf(0);
 //            do {
-                courseElements.clear();
-                try {
-                    Thread.sleep(120000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                do {
-                    currentElem = queue.poll();
-                    if (currentElem != null)
-                        courseElements.add(currentElem);
-                } while (currentElem != null);
-                if (courseElements.getFirst() < courseElements.getLast() ) {
-                    pw.println("The rate fell by: " + (courseElements.getFirst() - courseElements.getLast()) + " and amounted to " + courseElements.getLast());
-                } else if (courseElements.getLast() > courseElements.getFirst()) {
-                    pw.println("The rate increased by: " + (courseElements.getLast() - courseElements.getFirst()) + " and amounted to " + courseElements.getLast());
-                } else {
-                    pw.println("The rate has not changed and is equal to: " + courseElements.getFirst());
-                }
+            courseElements.clear();
+            try {
+                Thread.sleep(120000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            do {
+                currentElem = queue.poll();
+                if (currentElem != null)
+                    courseElements.add(currentElem);
+            } while (currentElem != null);
+            first = courseElements.getFirst();
+            last = courseElements.getLast();
+            compare = first.compareTo(last);
+            if (compare == 1) {
+                pw.println("The rate fell by: " + (first.subtract(last)) + " and amounted to " + last);
+            } else if (compare == -1) {
+                pw.println("The rate increased by: " + (last.subtract(first)) + " and amounted to " + last);
+            } else {
+                pw.println("The rate has not changed and is equal to: " + first);
+            }
 //                i++;
 //            } while (i < 1);
             Thread.interrupted();
@@ -183,9 +187,9 @@ public class MyServlet extends HttpServlet {
         return newSb;
     }
 
-    public Double siteParser(StringBuilder sb) throws IOException {
+    public BigDecimal siteParser(StringBuilder sb) throws IOException {
         String finalSCourse;
-        Double finalCourse;
+        BigDecimal finalCourse;
         String HTMLSTring = siteLoader(sb);
 
         Document html = Jsoup.parse(HTMLSTring);
@@ -195,7 +199,7 @@ public class MyServlet extends HttpServlet {
         courseD = h1.split(" ");
         finalSCourse = courseD[3];
 
-        finalCourse = Double.parseDouble(finalSCourse);
+        finalCourse = BigDecimal.valueOf(Double.parseDouble(finalSCourse));
         return finalCourse;
     }
 
