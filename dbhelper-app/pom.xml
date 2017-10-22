@@ -43,13 +43,13 @@
                 </dependency>
             </dependencies>
             <build>
+                <finalName>JavaServerFaces</finalName>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-ear-plugin</artifactId>
                         <version>2.10.1</version>
                         <configuration>
-                            <earName>dbhelper-app-${project.version}</earName>
                             <defaultLibBundleDir>lib</defaultLibBundleDir>
                             <archive>
                                 <manifestEntries/>
@@ -71,7 +71,7 @@
                                 <webModule>
                                     <groupId>ru.rbt.dbhelper</groupId>
                                     <artifactId>dbhelper-war</artifactId>
-                                    <contextRoot>/</contextRoot>
+                                    <contextRoot>/war</contextRoot>
                                 </webModule>
                             </modules>
                         </configuration>
