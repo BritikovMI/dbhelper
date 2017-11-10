@@ -72,7 +72,7 @@ public class MyServlet extends HttpServlet {
 //            pw.println(s);
 //        }
 
-//
+
         Thread threadWrite = new Thread(() -> {
             BigDecimal finalCourse = BigDecimal.valueOf(0);
             Integer i = Integer.valueOf(0);
