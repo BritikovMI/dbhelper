@@ -1,5 +1,6 @@
 package ru.rbt.dbhelper.war;
 
+import ru.rbt.dbhelper.other.DaoManager;
 import ru.rbt.dbhelper.rest.OrderRestImpl;
 
 import javax.inject.Inject;
@@ -46,17 +47,19 @@ public class MyServlet extends HttpServlet {
     @Inject
     private OrderRestImpl orderRestImpl;
 
-    //private DaoManager daoManager;
+    private DaoManager daoManager;
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String[] myParams = request.getRequestURI().split("/");
+   String[] myParams = request.getRequestURI().split("/");
 
-        StringBuilder sb = new StringBuilder();
+       StringBuilder sb = new StringBuilder();
 
 //        String name = request.getServletPath();
 //        String sNum = request.getRequestURI();
 
         String name = myParams[4];
+//        String name = "customer-order";
         Long num = Long.parseLong(myParams[6]);
+//        Long num = Long.parseLong("2");
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
@@ -64,7 +67,7 @@ public class MyServlet extends HttpServlet {
         pw.println("<pre>");
         pw.println("<h1>Hello, the name is: </h1>" + name + "<h3>Your table</h3>");
 //        List<String> result = daoManager.handleRequest(name, num);
-        pw.println(orderRestImpl.findByNameAndId(name, num));
+//        pw.println(orderRestImpl.findByNameAndId(name, num));
 //        for (String s : result) {
 //            pw.println(s);
 //        }

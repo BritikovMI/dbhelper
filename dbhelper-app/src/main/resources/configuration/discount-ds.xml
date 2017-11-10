@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datasources>
-	<xa-datasource jndi-name="java:jboss/datasources/discountDS" pool-name="discountPool" enabled="true">
+	<xa-datasource jndi-name="java:jboss/datasources/dbhelperDS" pool-name="discountPool" enabled="true">
 		<xa-datasource-property name="ServerName">dev.rbtechnologies.ru</xa-datasource-property>
 		<xa-datasource-property name="PortNumber">1521</xa-datasource-property>
 		<xa-datasource-property name="DatabaseName">ELAR</xa-datasource-property>
