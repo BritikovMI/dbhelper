@@ -30,7 +30,7 @@ public class OrderRestImpl implements OrderRest {
             sb.append(s).append('\n');
         }
 
-
+//
         Response theBestResponseIveEverMade = Response.ok(result).type("text/plain").build();
         return theBestResponseIveEverMade;
 //        return Response.status(Response.Status.theBestResponseIveEverMade).entity("new").type("text/plain").build();
