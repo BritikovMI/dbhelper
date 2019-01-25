@@ -6,6 +6,7 @@ import ru.rbt.dbhelper.jpa.Order;
 import ru.rbt.dbhelper.jpa.Order_;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -17,13 +18,13 @@ import java.util.List;
  */
 @Stateless
 public class OrderDao extends AbstractEntityDao<Long, Order> {
-
+    EntityManager em = getEntityManager();
     public OrderDao() {
         super(Order.class);
     }
 
     public List<Order> getOrdersByCustomerId(Long customerId) {//Получаем заказы определенного кастомера
-        CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
+        CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Order> criteria = builder.createQuery(Order.class);
         Root<Order> root = criteria.from(Order.class);
         criteria.select(root);

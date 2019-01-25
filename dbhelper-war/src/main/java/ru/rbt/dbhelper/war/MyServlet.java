@@ -66,11 +66,11 @@ public class MyServlet extends HttpServlet {
         PrintWriter pw = response.getWriter();
         pw.println("<pre>");
         pw.println("<h1>Hello, the name is: </h1>" + name + "<h3>Your table</h3>");
-//        List<String> result = daoManager.handleRequest(name, num);
-        pw.println(orderRestImpl.findByNameAndId(name, num));
-//        for (String s : result) {
-//            pw.println(s);
-//        }
+        List<String> result = daoManager.handleRequest(name, num);
+//        pw.println(orderRestImpl.findByNameAndId(name, num));
+        for (String s : result) {
+            pw.println(s);
+        }
 
     }
 }
